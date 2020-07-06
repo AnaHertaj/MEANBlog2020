@@ -1,0 +1,36 @@
+GET http://localhost:3000/api/posts
+
+###
+
+GET http://localhost:3000/api/posts/5f01a4d17ed6380bc9b68e00
+
+###
+
+POST http://localhost:3000/api/posts
+Content-Type: application/json
+
+{
+    "titulo": "EL arte del desarrollo",
+    "categoria": "Educación",
+    "contenido": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    "url_image": "angular.png"
+}
+ 
+###
+
+PUT http://localhost:3000/api/posts
+Content-Type: application/json
+
+{
+    "_id": "5f01a6a87ed6380bc9b68e01",
+    "titulo": "Carpeeeeeter",
+    "categoria": "Medioambiente",
+    "contenido": "Austo odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.",
+    "url_imagen": "ecologia.jpg"
+}
+
+###
+
+DELETE http://localhost:3000/api/posts/5efcc240725b530b20d2e7ad
+
+

@@ -1,0 +1,13 @@
+<div class="detalle full">
+    <div class="detalle-post">
+        <div class="detalle-post--cab">
+            <div class="titulo">{{post?.titulo}}</div>
+            <img [src]="(pathImageUrl + post?.url_imagen)" />
+        </div>
+        <div class="detalle-post--content">
+            <span class="category"
+                [ngClass]="{ medioambiente: (post?.categoria === 'Medioambiente'), tecnologia: (post?.categoria === 'Tecnología'), educacion: (post?.categoria === 'Educación'), cultura: (post?.categoria === 'Cultura') }">{{post?.categoria}}</span>
+            <p class="text">{{post?.contenido}}</p>
+        </div>
+    </div>
+</div>

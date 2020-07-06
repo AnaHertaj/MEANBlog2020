@@ -1,0 +1,83 @@
+.wrapper-posts{
+    max-width:50%;
+    margin:2em auto;
+    padding:0;
+    position:relative;
+    z-index:1;
+    height: 100vh;
+    .posts-list{
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        &--item{
+            margin:2em 0;
+            box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
+            transition: 0.2s;
+            &:hover{
+                box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+                transform:scale(1.1);
+                cursor: pointer;
+            }
+        }
+        .post{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            background-color: white;
+            &--img{
+                background-color: peru;
+                width:20%;
+                height: 100px;
+                img{
+                    object-fit: cover;
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+            &--content{
+                width:80%;
+                display: flex;
+                flex-direction: column;
+                .title{
+                    padding:0.5em 1em;
+                    text-transform: uppercase;
+                    font-size:0.7em;
+                }
+                .text{
+                    padding:1em;
+                    font-size:0.5em;
+                    width:90%;
+                    // height:2em;
+                    text-overflow:ellipsis;
+                    white-space:nowrap; 
+                    overflow:hidden;  
+                    margin: 0 0 2em;
+                }
+                .category{
+                    font-size:0.5em; 
+                    //border:1px solid black;
+                    float: right;
+                    padding: 0.25em 1em;
+                    color:white;
+                    width: 30%;
+                    text-align: center;
+                    font-weight:600;
+                    &.medioambiente{
+                        background-color:forestgreen;
+                    }
+                    &.tecnologia{
+                        background-color:darkcyan;
+                    }
+                    &.educacion{
+                        background-color:orangered;
+                    }
+                    &.cultura{
+                        background-color:brown;
+                    }
+                }
+                
+            }
+        }
+    }
+}

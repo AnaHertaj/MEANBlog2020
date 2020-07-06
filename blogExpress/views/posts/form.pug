@@ -1,0 +1,41 @@
+extends ../layout.pug
+//-rellenar bloques de ese layout
+block content
+    .row
+        .col-lg-12
+            h6.my-5.title-form
+                strong
+                    | Crea tu nuevo post
+    .form
+        form(ref='uploadForm', action="/posts/crear", method="POST", encType="multipart/form-data")
+            .row
+                .col-xs-12.col-sm-6
+                    //- .form-group
+                    //-     label Fecha
+                    //-     input.form-control(type="text", name="fecha")
+                    .form-group
+                        label Título
+                        input.form-control(type="text", name="titulo")
+                .col-xs-12.col-sm-6
+                    .form-group
+                        label Categoría
+                        select.form-control(name="categoria")
+                            | Elige
+                            option(value='Medioambiente') Medioambiente
+                            option(value='Tecnología') Tecnolog&iacute;a
+                            option(value='Educación') Educaci&oacute;n
+                            option(value='Cultura') Cultura
+                .col-xs-12.col-sm-6
+                    .form-group
+                        label Contenido
+                        textarea.form-control(rows="4", name="contenido")
+                .col-xs-12.col-sm-6
+                    .form-group
+                        label Imagen
+                        br
+                        input(type="file", name="url_imagen")
+            //- .row 
+            //-     .col-lg-12
+            //-         .error.text-center.m2 #{error}
+            .row
+                input.btn.form-control.my-3.btn-block.btn-warning(type="submit", value="CREAR")

@@ -1,0 +1,50 @@
+extends ../layout.pug
+
+block content
+    .form
+        form(ref='uploadForm', action="/posts/actualizar", method="POST", encType="multipart/form-data")
+            .row
+                .col-lg-12
+                    h6.my-5.title-form 
+                        strong
+                            | Actualiza tu post 
+            .row
+                .col-xs-12.col-sm-6
+                    //- .form-group
+                    //-     label Fecha
+                    //-     input.form-control(type="text", name="fecha")
+                    .form-group
+                        label Título
+                        input.form-control(type="text", name="titulo", value=post.titulo)
+                .col-xs-12.col-sm-6
+                    .form-group
+                        label Categoría 
+                        select.form-control(name="categoria", value=post.categoria)
+                            option
+                                = value=post.categoria
+                            option(value='Medioambiente') Medioambiente
+                            option(value='Tecnología') Tecnolog&iacute;a
+                            option(value='Educación') Educaci&oacute;n
+                            option(value='Cultura') Cultura   
+                .col-xs-12.col-sm-6
+                    .form-group
+                        label Contenido
+                        textarea.form-control(rows="4", name="contenido", contenteditable="true")
+                            = value=post.contenido
+                .col-xs-12.col-sm-6
+                    .form-group
+                        label Tu imagen actual es esta:  
+                        //-pre #{uploadPath}
+                        pre #{post.url_imagen}
+                        label Elegir otra imagen: 
+                        br
+                        input(type="file", name="url_imagen")
+                        //-input(type="file", name="url_imagen", value=post.url_imagen)
+            .row 
+                .col-lg-12
+                    //-.error.text-center.m2 #{error}
+                    p #{error}
+            .row
+                input(type="hidden", name="id", value=post.id)   
+            .row   
+                input.btn.form-control.my-3.btn-block.btn-warning(type="submit", value="ACTUALIZAR")

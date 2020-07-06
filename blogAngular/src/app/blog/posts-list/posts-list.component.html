@@ -1,0 +1,18 @@
+<div class="wrapper-posts">
+    <ul class="posts-list">
+        <li [routerLink]="['/blog', post._id]" class="posts-list--item post" *ngFor="let post of posts">
+            <div class="post--img">
+                <img [src]="(pathImageUrl + post.url_imagen)" />
+            </div>
+            <div class="post--content">
+                <div class="wrapper-category">
+                    <span class="category"
+                        [ngClass]="{ medioambiente: (post.categoria === 'Medioambiente'), tecnologia: (post.categoria === 'Tecnología'), educacion: (post.categoria === 'Educación'), cultura: (post.categoria === 'Cultura') }">{{post.categoria}}</span>
+                </div>
+                <span class="title">{{post.titulo}}</span>
+                <p class="text">{{post.contenido}}</p>
+                <!--<small>{{post._id}}</small>-->
+            </div>
+        </li>
+    </ul>
+</div>
