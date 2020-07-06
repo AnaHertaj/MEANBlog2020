@@ -4,9 +4,6 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
-const bodyParser = require('body-parser');
-const multer = require('multer');
-
 const indexRouter = require('./routes/index');
 const postsRouter = require('./routes/posts');
 const apiRouter = require('./routes/api');
@@ -22,8 +19,6 @@ const app = express();
 
 app.use(cors());
 //app.use(cors({ origin: "*" }));
-app.use(bodyParser.json());
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -35,55 +30,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/uploads', express.static('uploads'));
-
-
-// MIDDLEWARE //
-// app.use((req,res,next) => {
-//     next();
-// });
-
-// app.listen(3000, () => {
-//   console.log("The server started on port 3000 !!!!!!");
-// });
-
-/// MULTER AS RECEIVE POST FROM ANGULAR \\\ 
-
-const storage = multer.diskStorage({
-  destination: (req, file, callBack) => {
-    callBack(null, 'uploads')
-  },
-  filename: (req, file, callBack) => {
-    callBack(null, new Date().toISOString() + file.originalname)
-  }
-})
-
-const upload = multer({ storage: storage })
-
-//let upload = multer({ dest: 'uploads/' })
-
-// app.get("/", (req, res) => {
-//   res.send(
-//     `< h1 style = 'text-align: center' >
-//             Wellcome to FunOfHeuristic 
-//             <br><br>
-//             <b style="font-size: 182px;">😃👻</b>
-//         </h1>`
-//   );
-// });
-
-app.post('/file', upload.single('url_imagen'), (req, res, next) => {
-  const file = req.file;
-  console.log(file.filename);
-  if (!file) {
-    const error = new Error('No File')
-    error.httpStatusCode = 400
-    return next(error)
-  }
-  res.send(file);
-})
-
-
-/// MULTER AS RECEIVE POST FROM ANGULAR END \\\ 
 
 app.use('/', indexRouter);
 app.use('/posts', postsRouter);

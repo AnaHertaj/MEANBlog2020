@@ -11,32 +11,12 @@ const storage = multer.diskStorage({
         callBack(null, './uploads/');
     },
     filename: function (req, file, callBack) {
-        callBack(null, new Date().toISOString() + file.originalname);
+        callBack(null, new Date().toISOString() + '-' + file.originalname);
         //others ways :::: 
         //cb(null, `myBlog_${file.originalname}`)
         //cb(null, file.originalname);
     }
 });
-
-// const fileFilter = (req, file, cb) => {
-//     // reject a file
-//     if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
-//         cb(null, true);
-//     } else {
-//         cb(null, false);
-//     }
-
-// };
-
-// const upload = multer({ dest: './uploads/' });
-
-// const upload = multer({
-//     storage: storage,
-//     limits: {
-//         fileSize: 1024 * 1024 * 5
-//     },
-//     fileFilter: fileFilter
-// });
 
 const upload = multer({ storage: storage });
 

@@ -1,16 +1,27 @@
 
 const router = require('express').Router();
+const multer = require('multer');
+//const upload = multer({ dest: './uploads/' });
+const fs = require('fs');
 const Post = require('../../models/post');
+
+const storage = multer.diskStorage({
+    destination: function (req, file, callBack) {
+        callBack(null, './uploads/');
+    },
+    filename: function (req, file, callBack) {
+        callBack(null, new Date().toISOString() + '-' + file.originalname);
+        //others ways :::: 
+        //cb(null, `myBlog_${file.originalname}`)
+        //cb(null, file.originalname);
+    }
+});
+
+const upload = multer({ storage: storage });
 
 // GET http://localhost:3000/api/posts
 router.get('/', (req, res) => {
     Post.find()
-        // .then( posts => {
-        //     res.json(posts);
-        // })
-        // .catch(err => {
-        //     res.json({ error: err.mensaje });
-        // })
         .then(posts => res.json(posts))
         .catch(err => res.json({ error: err.message }));
 });
@@ -33,8 +44,18 @@ router.get('/:postId', (req, res) => {
 });
 
 // POST http://localhost:3000/api/posts 
-router.post('/', async (req, res) => {
+router.post('/', upload.single('url_imagen'), async (req, res, next) => {
+
     try {
+
+        if (req.file) {
+            url_imagen = req.file.path;
+            req.body.url_imagen = url_imagen;
+        } else {
+            // req.body.url_imagen = url_imagen;
+            req.body.url_imagen = '';
+        }
+
         const newPost = await Post.create(req.body);
         res.json(newPost);
     } catch (err) {
